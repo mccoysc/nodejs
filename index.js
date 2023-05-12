@@ -2,7 +2,6 @@ const express = require("express");
 const mqtt = require("mqtt");
 const http = require("http");
 const crypto = require("crypto");
-const Buffer=require("Buffer");
 
 
 const replyTimeout = process.env.REPLY_TIMEOUT || 30000;
