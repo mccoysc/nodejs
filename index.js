@@ -77,7 +77,7 @@ app.use(/.*/,async (req, res, next) => {
         return res.end("invalid server status");
     }
     const replyId = crypto.randomBytes(16).toString("hex");
-    var msgPayload = { replyTopic: replyId, httpMethod: req.method, httpPath: req.path, httpHeaders: req.headers };
+    var msgPayload = { replyTopic: replyId, httpMethod: req.method, httpPath: req.originalUrl, httpHeaders: req.headers };
     if (req.method.toLocaleLowerCase() === "post") {
         var chunks = [];
         for await (var chunk of streamAsyncIterable(req)) {
