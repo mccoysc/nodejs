@@ -1,13 +1,22 @@
 {
-  "name": "nodejs-app",
+  "name": "http2mq",
   "version": "1.0.0",
-  "description": "A minimal Node.js web application.",
+  "description": "accept http request and proxy the request to message queue and response the http request with received msg",
   "main": "index.js",
-  "author": "alphasec",
-  "license": "MIT",
-   "dependencies": {
-  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "message",
+    "queu",
+    "proxy"
+  ],
+  "author": "mccoy",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mqtt": "^4.3.7"
   }
 }
