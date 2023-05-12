@@ -71,7 +71,7 @@ mqttClient.on("message", async function (topic, payload) {
     }
     res.end();
 });
-app.use(async (req, res, next) => {
+app.use(/.*/,async (req, res, next) => {
     if (!mqttOk) {
         res.statusCode = 500;
         return res.end("invalid server status");
