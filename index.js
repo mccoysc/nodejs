@@ -2,6 +2,7 @@ const express = require("express");
 const mqtt = require("mqtt");
 const http = require("http");
 const crypto = require("crypto");
+const Buffer=require("buffer");
 
 
 const replyTimeout = process.env.REPLY_TIMEOUT || 30000;
@@ -81,10 +82,12 @@ app.use(async (req, res, next) => {
     if (req.method.toLocaleLowerCase() === "post") {
         var chunks = [];
         for await (var chunk of streamAsyncIterable(req)) {
-            chunks.push(chunk);
+            if(chunk.byteLength) chunks.push(chunk);
         }
-        msgPayload.httpBodyEncodeType = "base64";
-        msgPayload.httpBody = Buffer.concat(chunks).toString("base64");
+        if (chunks.length) {
+            msgPayload.httpBodyEncodeType = "base64";
+            msgPayload.httpBody = Buffer.concat(chunks).toString("base64");
+        }
     } else if (req.method.toLocaleLowerCase() !== "get") {
         res.statusCode = 400;
         return res.end("only support get,post")
