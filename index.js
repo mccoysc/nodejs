@@ -82,9 +82,9 @@ app.use(async (req, res, next) => {
     if (req.method.toLocaleLowerCase() === "post") {
         var chunks = [];
         for await (var chunk of streamAsyncIterable(req)) {
-            if(chunk.byteLength) chunks.push(chunk);
+            if(chunk?.byteLength) chunks.push(chunk);
         }
-        if (chunks.length) {
+        if (chunks?.length) {
             msgPayload.httpBodyEncodeType = "base64";
             msgPayload.httpBody = Buffer.concat(chunks).toString("base64");
         }
