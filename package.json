@@ -18,6 +18,6 @@
   "dependencies": {
     "express": "^4.18.2",
     "mqtt": "^4.3.7",
-    "node-fetch":"2"
+    "node-fetch":"3"
   }
 }
